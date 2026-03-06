@@ -16,7 +16,16 @@ import glob
 # =========================
 # 기본 설정/폰트
 # =========================
-plt.rcParams["font.family"] = "Malgun Gothic"   # Windows
+import matplotlib.font_manager as fm
+import os
+
+FONT_PATH = os.path.join("fonts", "NotoSansKR-Regular.ttf")
+
+if os.path.exists(FONT_PATH):
+    font_prop = fm.FontProperties(fname=FONT_PATH)
+    fm.fontManager.addfont(FONT_PATH)
+    plt.rcParams["font.family"] = font_prop.get_name()
+
 plt.rcParams["axes.unicode_minus"] = False
 
 st.set_page_config(page_title="리뷰 인사이트 대시보드", layout="wide")
